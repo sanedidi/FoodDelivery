@@ -1,0 +1,185 @@
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+aside,
+nav,
+footer,
+header,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.log__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+
+}
+.logo__main::before {
+
+}
+.log__main input {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #b0b0b0;
+  border-radius: 10px;
+  padding-left: 30px;
+}
+.log__main
+.ff::after{
+  content: '';
+  background-image: url(./assets/mail.png);
+  background-size: cover;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  /* padding: 20px; */
+  top: 33px;
+  left: 10px;
+}
+.log__main p {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+.log__input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  p{
+    text-align: center;
+  }
+}
+.log__main button{
+  padding: 10px;
+}
+
+.log__main button .log__input .active{
+  background-color: red;
+}
+
+.log__main .log__input .ff input.active + button {
+  color: white;
+  background-color: #7E5FA5;
+  
+}
+
+.log__input button{
+  background-color: #DDE2E4;
+  color: #7F7F7F;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+
+.MuiBox-root{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.log__resend{
+  background-color: transparent !important;
+  color: #7E5FA5 !important;
+  padding: 0 !important;
+  font-size: 20px;
+  width: max-content;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.verify__code::after{
+  content: '';
+  background-image: url(./assets/mail.png);
+  background-size: cover;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  /* padding: 20px; */
+  top: 18px;
+  left: 10px;
+}
+.ff{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.verify__button.active{
+  color: #fff;
+    background-color: #7E5FA5;
+}
+
+.invalid {
+  border: 2px solid red !important; 
+}

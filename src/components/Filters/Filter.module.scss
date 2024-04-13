@@ -1,0 +1,29 @@
+.filter {
+  
+    margin: 40px 0;
+    &__wrapper {
+    }
+    &__slider {
+      padding: 7px;
+      border-radius: 8px;
+      &.active {
+        background-color: #f1eff4;
+      }
+    }
+    &__slider_slide {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 20px;
+    }
+    &__slider_text {
+      color: #000;
+      font-weight: 500;
+      font-size: 15px;
+      &.active {
+        color: #7e60a7;
+      }
+    }
+  
+  }
+  
