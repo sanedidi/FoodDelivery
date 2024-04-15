@@ -5,6 +5,26 @@
         align-items: center;
         justify-content: space-between;
     }
+    &__profile{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 5px;
+        border-radius: 8px;
+        font-weight: 600;
+        svg{
+            width: 25px;
+            fill: #7E5FA5 !important;
+        }
+        &.active{
+            background-color: #F1EFF4;
+            color: black !important;
+            font-weight: 600;
+
+        }
+    }
+  
     &__links{
         display: flex;
         align-items: center;
@@ -111,6 +131,7 @@
         p{
             color: #7F7F7F !important;
         }
+        
 
     }
     &__modal_main{
@@ -154,6 +175,7 @@
         .active{
             background-color: #f6f8f9;
         }
+       
     }
     &__btn{
         transition: all 1s;

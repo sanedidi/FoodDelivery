@@ -26,6 +26,24 @@ const useHeaderProps = () => {
   );
   const [showTimer, setShowTimer] = useState(false);
 
+  const links = [
+    {
+      id:1,
+      link: 'Профиль',
+      path:'/profile'
+    },
+    {
+      id:2,
+      link: 'Мои заказы',
+      path:'/order'
+    },
+    {
+      id:3,
+      link: 'Мои адреса',
+      path:'/address'
+    }
+  ]
+
   return {
     setShowPersonalInfoInput,
     showPersonalInfoInput,
@@ -65,6 +83,7 @@ const useHeaderProps = () => {
     email,
     lang,
     code,
+    links
   };
 };
 

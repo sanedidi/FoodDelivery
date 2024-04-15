@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import s from './Header.module.scss';
-import logo from '../../assets/svg/logo.svg';
-import LocationIcon from '../../assets/svg/LocationIcon.svg';
-import russian from '../../assets/svg/russian.svg';
-import { SlBasket } from 'react-icons/sl';
-import { RiAccountCircleLine } from 'react-icons/ri';
-import { Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Stack } from '@chakra-ui/react';
-import Drawer from 'react-modern-drawer';
-import 'react-modern-drawer/dist/index.css';
-import { Box } from '@chakra-ui/react';
+import React, { useState, useEffect } from "react";
+import s from "./Header.module.scss";
+import logo from "../../assets/svg/logo.svg";
+import LocationIcon from "../../assets/svg/LocationIcon.svg";
+import russian from "../../assets/svg/russian.svg";
+import { SlBasket } from "react-icons/sl";
+import { RiAccountCircleLine } from "react-icons/ri";
+import { FaCheck } from "react-icons/fa";
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
+  Stack,
+} from "@chakra-ui/react";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import { Box } from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -17,14 +29,14 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from '@chakra-ui/react';
-import { Link, useLocation } from 'react-router-dom';
-import { EmailIcon, LockIcon } from '@chakra-ui/icons';
-import axios from 'axios';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import useHeaderProps from './useHeaderProps';
-import { useLogin } from '../../Services/auth.service';
-import { useCart } from 'react-use-cart';
+} from "@chakra-ui/react";
+import { Link, useLocation } from "react-router-dom";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import axios from "axios";
+import { GiHamburgerMenu } from "react-icons/gi";
+import useHeaderProps from "./useHeaderProps";
+import { useLogin } from "../../Services/auth.service";
+import { useCart } from "react-use-cart";
 
 export const Header = () => {
   const { totalItems } = useCart();
@@ -68,10 +80,11 @@ export const Header = () => {
     email,
     lang,
     code,
+    links,
   } = useHeaderProps();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
     }
@@ -83,7 +96,7 @@ export const Header = () => {
         setTimeLeft(timeLeft - 1);
       } else {
         setShowTimer(false);
-        setResendButtonText('Отправить код еще раз');
+        setResendButtonText("Отправить код еще раз");
       }
     }, 1000);
 
@@ -116,7 +129,7 @@ export const Header = () => {
   const handleVerifyCode = async () => {
     try {
       const response = await axios.post(
-        'https://delivery-q991.onrender.com/api/v1/auth/verify-code/',
+        "https://delivery-q991.onrender.com/api/v1/auth/verify-code/",
         {
           email: email,
           verification_code: code,
@@ -132,22 +145,22 @@ export const Header = () => {
         setShowCodeInput(false);
       }
       const accessToken = response.data.access;
-      localStorage.setItem('token', accessToken);
+      localStorage.setItem("token", accessToken);
       console.log(response);
     } catch (error) {
       console.log(error);
       setIsCodeValid(false);
       setResendDisabled(false);
       setShowTimer(false);
-      setResendButtonText('Отправить код еще раз');
+      setResendButtonText("Отправить код еще раз");
     }
   };
 
   const handleRegistration = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const response = await axios.post(
-        'https://delivery-q991.onrender.com/api/v1/user/profile/',
+        "https://delivery-q991.onrender.com/api/v1/user/profile/",
         {
           full_name: fullName,
           phone_number: phoneNumber,
@@ -158,7 +171,7 @@ export const Header = () => {
           },
         }
       );
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("token", response.data.token);
       setIsLoggedIn(true);
       setIsOpenSecondModal(false);
     } catch (error) {
@@ -178,7 +191,7 @@ export const Header = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
   };
 
   const handlePageClick = (path) => {
@@ -191,45 +204,45 @@ export const Header = () => {
 
   return (
     <>
-      <header id='header' className={s.header}>
-        <div className='container'>
+      <header id="header" className={s.header}>
+        <div className="container">
           <div className={s.header__wrapper}>
             <div className={s.header__links}>
               <div onClick={toggleDrawer} className={s.header__burger}>
                 <GiHamburgerMenu />
               </div>
-              <Link to='/' className={s.header__link}>
-                <img src={logo} alt='Логотип' />
+              <Link to="/" className={s.header__link}>
+                <img src={logo} alt="Логотип" />
               </Link>
               <div className={s.header__main_link}>
                 <Link
-                  to='/'
+                  to="/"
                   className={`${s.header__link} ${
-                    location.pathname === '/' ? s.active : ''
+                    location.pathname === "/" ? s.active : ""
                   }`}
                 >
                   Меню
                 </Link>
                 <Link
-                  to='/branches'
+                  to="/branches"
                   className={`${s.header__link} ${
-                    location.pathname === '/branches' ? s.active : ''
+                    location.pathname === "/branches" ? s.active : ""
                   }`}
                 >
                   Филиалы
                 </Link>
                 <Link
-                  to='/aboutus'
+                  to="/aboutus"
                   className={`${s.header__link} ${
-                    location.pathname === '/aboutus' ? s.active : ''
+                    location.pathname === "/aboutus" ? s.active : ""
                   }`}
                 >
                   О нас
                 </Link>
                 <Link
-                  to='/contact'
+                  to="/contact"
                   className={`${s.header__link} ${
-                    location.pathname === '/contact' ? s.active : ''
+                    location.pathname === "/contact" ? s.active : ""
                   }`}
                 >
                   Контакты
@@ -239,7 +252,7 @@ export const Header = () => {
             <div className={s.header__details}>
               <div className={s.header__options}>
                 <div className={s.header__loc}>
-                  <img src={LocationIcon} alt='Иконка местоположения' />
+                  <img src={LocationIcon} alt="Иконка местоположения" />
                 </div>
                 <div className={s.header__options_info}>
                   <p>Доставка или Самовызов</p>
@@ -248,10 +261,10 @@ export const Header = () => {
               </div>
               <div className={s.header__language}>
                 <button>
-                  {lang === 'ru' ? (
-                    <img src={russian} alt='Флаг России' />
+                  {lang === "ru" ? (
+                    <img src={russian} alt="Флаг России" />
                   ) : (
-                    <img src={russian} alt='Флаг Узбекистана' />
+                    <img src={russian} alt="Флаг Узбекистана" />
                   )}
                 </button>
                 <select
@@ -259,12 +272,12 @@ export const Header = () => {
                   value={lang}
                   onChange={handleLangChange}
                 >
-                  <option value='ru'>RU</option>
-                  <option value='uz'>UZ</option>
+                  <option value="ru">RU</option>
+                  <option value="uz">UZ</option>
                 </select>
               </div>
               <div className={s.header__basket}>
-                <Link className={s.header__basket_icon} to={'/cart'}>
+                <Link className={s.header__basket_icon} to={"/cart"}>
                   <SlBasket className={s.header__icon} />
                   <p>{totalItems} количества</p>
                 </Link>
@@ -272,18 +285,30 @@ export const Header = () => {
               <div className={s.header__account}>
                 {isLoggedIn ? (
                   <Menu>
-                  <MenuButton as={Button} colorScheme='transparent'>
-                  <RiAccountCircleLine/>
-                  </MenuButton>
-                  <MenuList className='header__menu '>
-                    <MenuGroup title='Profile'>
-                      <MenuItem >My Account</MenuItem>
-                      <MenuItem>Мои заказы</MenuItem>
-                      <MenuItem>Мои адреса</MenuItem>
-                    </MenuGroup>
-                    <MenuDivider />
-                  </MenuList>
-                </Menu>
+                    <MenuButton as={Button} colorScheme="transparent">
+                      <RiAccountCircleLine />
+                    </MenuButton>
+                    <MenuList className="header__menu ">
+                      <MenuGroup title="">
+                        {links.map((el) => {
+                          return (
+                            <MenuItem className={s.header__main_menu} key={el.id}>
+                              <Link
+                                className={`${s.header__profile} ${
+                                  location.pathname === el.path ? s.active : ""
+                                }`}
+                                to={el.path}
+                              >
+                                {el.link}
+                                {location.pathname === el.path && <FaCheck />}
+                              </Link>
+                            </MenuItem>
+                          );
+                        })}
+                      </MenuGroup>
+                      <MenuDivider />
+                    </MenuList>
+                  </Menu>
                 ) : (
                   <RiAccountCircleLine
                     onClick={() => setIsOpenSecondModal(true)}
@@ -329,11 +354,11 @@ export const Header = () => {
                   <Box>
                     <p>Email или номер телефона</p>
                     <InputGroup>
-                      <InputLeftElement pointerEvents='none'>
-                        <EmailIcon color='gray.300' />
+                      <InputLeftElement pointerEvents="none">
+                        <EmailIcon color="gray.300" />
                       </InputLeftElement>
                       <Input
-                        type='email'
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -346,14 +371,14 @@ export const Header = () => {
                   <p>Код подтверждения из email</p>
                   <Stack spacing={4}>
                     <InputGroup>
-                      <InputLeftElement pointerEvents='none'>
-                        <LockIcon color='gray.300' />
+                      <InputLeftElement pointerEvents="none">
+                        <LockIcon color="gray.300" />
                       </InputLeftElement>
                       <Input
-                        type='text'
+                        type="text"
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        className={`${s.input} ${!isCodeValid ? s.error : ''}`}
+                        className={`${s.input} ${!isCodeValid ? s.error : ""}`}
                       />
                     </InputGroup>
                   </Stack>
@@ -362,16 +387,16 @@ export const Header = () => {
                       <p
                         style={{
                           display: showTimer
-                            ? 'none'
-                            : 'block' && !showTimer
-                            ? 'none'
-                            : 'block',
+                            ? "none"
+                            : "block" && !showTimer
+                            ? "none"
+                            : "block",
                         }}
                       >
                         00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft} сек
                       </p>
                     ) : (
-                      <p style={{ color: 'red' }} onClick={handleSendCode}>
+                      <p style={{ color: "red" }} onClick={handleSendCode}>
                         {resendButtonText} ?
                       </p>
                     )}
@@ -379,7 +404,7 @@ export const Header = () => {
                   <Button
                     className={s.header__btn}
                     onClick={handleVerifyCode}
-                    style={{ backgroundColor: code ? '#7e5fa5' : 'gray' }}
+                    style={{ backgroundColor: code ? "#7e5fa5" : "gray" }}
                   >
                     Отправить код
                   </Button>
@@ -391,7 +416,7 @@ export const Header = () => {
                   <Stack spacing={4}>
                     <InputGroup>
                       <Input
-                        type='text'
+                        type="text"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                       />
@@ -401,7 +426,7 @@ export const Header = () => {
                   <Stack spacing={4}>
                     <InputGroup>
                       <Input
-                        type='tel'
+                        type="tel"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                       />
@@ -412,7 +437,7 @@ export const Header = () => {
                     className={s.header__btn}
                     style={{
                       backgroundColor:
-                        fullName && phoneNumber ? '#7e5fa5' : 'gray',
+                        fullName && phoneNumber ? "#7e5fa5" : "gray",
                     }}
                   >
                     Зарегистрироваться
@@ -425,7 +450,7 @@ export const Header = () => {
                   onClick={handleEmailButtonClick}
                   style={{
                     backgroundColor:
-                      email && !resendDisabled ? '#7e5fa5' : 'gray',
+                      email && !resendDisabled ? "#7e5fa5" : "gray",
                   }}
                   disabled={resendDisabled}
                 >
@@ -439,38 +464,38 @@ export const Header = () => {
       <Drawer
         open={isOpenBurger}
         onClose={toggleDrawer}
-        direction='right'
+        direction="right"
         className={s.header__main_burger}
       >
         <div className={s.header__main_link}>
           <Link
-            to='/'
+            to="/"
             className={`${s.header__link} ${
-              location.pathname === '/' ? s.active : ''
+              location.pathname === "/" ? s.active : ""
             }`}
           >
             Меню
           </Link>
           <Link
-            to='/branches'
+            to="/branches"
             className={`${s.header__link} ${
-              location.pathname === '/branches' ? s.active : ''
+              location.pathname === "/branches" ? s.active : ""
             }`}
           >
             Филиалы
           </Link>
           <Link
-            to='/aboutus'
+            to="/aboutus"
             className={`${s.header__link} ${
-              location.pathname === '/aboutus' ? s.active : ''
+              location.pathname === "/aboutus" ? s.active : ""
             }`}
           >
             О нас
           </Link>
           <Link
-            to='/contact'
+            to="/contact"
             className={`${s.header__link} ${
-              location.pathname === '/contact' ? s.active : ''
+              location.pathname === "/contact" ? s.active : ""
             }`}
           >
             Контакты
