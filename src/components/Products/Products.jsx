@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { products } from './useProductsProps';
+import useProductsProps from './useProductsProps';
 
 const Products = () => {
+  const {products} = useProductsProps()
   const news = products?.filter((el) => el?.category === 'Новинки');
   const lavash = products?.filter((el) => el?.category === 'Лаваш');
   const trindwich = products?.filter((el) => el?.category === 'Триндвич');

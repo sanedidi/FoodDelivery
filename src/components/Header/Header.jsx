@@ -71,7 +71,10 @@ export const Header = () => {
   } = useHeaderProps();
 
   useEffect(() => {
-    localStorage.removeItem('token');
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -175,7 +178,7 @@ export const Header = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    window.location.reload();
+    localStorage.removeItem('token');
   };
 
   const handlePageClick = (path) => {
