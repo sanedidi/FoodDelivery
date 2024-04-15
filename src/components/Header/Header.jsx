@@ -5,7 +5,7 @@ import LocationIcon from '../../assets/svg/LocationIcon.svg';
 import russian from '../../assets/svg/russian.svg';
 import { SlBasket } from 'react-icons/sl';
 import { RiAccountCircleLine } from 'react-icons/ri';
-import { Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
+import { Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Stack } from '@chakra-ui/react';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 import { Box } from '@chakra-ui/react';
@@ -271,7 +271,19 @@ export const Header = () => {
               </div>
               <div className={s.header__account}>
                 {isLoggedIn ? (
-                  <button onClick={handleLogout}>Выход</button>
+                  <Menu>
+                  <MenuButton as={Button} colorScheme='transparent'>
+                  <RiAccountCircleLine/>
+                  </MenuButton>
+                  <MenuList className='header__menu '>
+                    <MenuGroup title='Profile'>
+                      <MenuItem >My Account</MenuItem>
+                      <MenuItem>Мои заказы</MenuItem>
+                      <MenuItem>Мои адреса</MenuItem>
+                    </MenuGroup>
+                    <MenuDivider />
+                  </MenuList>
+                </Menu>
                 ) : (
                   <RiAccountCircleLine
                     onClick={() => setIsOpenSecondModal(true)}
