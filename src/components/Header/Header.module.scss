@@ -5,6 +5,25 @@
         align-items: center;
         justify-content: space-between;
     }
+    &__ss{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__top{
+        display: flex !important;
+        flex-direction: column !important;
+        p{
+            font-size: 18px;
+            font-weight: 500;
+            color: #7F7F7F;
+        }
+        h2{
+            font-size: clamp(1.25rem, 1.087rem + 0.82vw, 1.75rem);
+            color: black;
+
+        }
+    }
     &__profile{
         display: flex;
         align-items: center;

@@ -25,24 +25,25 @@ const useHeaderProps = () => {
     "Отправить код еще раз?"
   );
   const [showTimer, setShowTimer] = useState(false);
+  const [Btn, setBtn] = useState(false);
 
   const links = [
     {
-      id:1,
-      link: 'Профиль',
-      path:'/profile'
+      id: 1,
+      link: "Профиль",
+      path: "/profile",
     },
     {
-      id:2,
-      link: 'Мои заказы',
-      path:'/order'
+      id: 2,
+      link: "Мои заказы",
+      path: "/order",
     },
     {
-      id:3,
-      link: 'Мои адреса',
-      path:'/address'
-    }
-  ]
+      id: 3,
+      link: "Мои адреса",
+      path: "/address",
+    },
+  ];
 
   return {
     setShowPersonalInfoInput,
@@ -83,7 +84,9 @@ const useHeaderProps = () => {
     email,
     lang,
     code,
-    links
+    links,
+    Btn,
+    setBtn,
   };
 };
 

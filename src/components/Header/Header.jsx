@@ -6,6 +6,16 @@ import russian from "../../assets/svg/russian.svg";
 import { SlBasket } from "react-icons/sl";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FaCheck } from "react-icons/fa";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import { Box } from "@chakra-ui/react";
+import { Link, useLocation } from "react-router-dom";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import axios from "axios";
+import { GiHamburgerMenu } from "react-icons/gi";
+import useHeaderProps from "./useHeaderProps";
+import { useLogin } from "../../Services/auth.service";
+import { useCart } from "react-use-cart";
 import {
   Input,
   InputGroup,
@@ -18,9 +28,7 @@ import {
   MenuList,
   Stack,
 } from "@chakra-ui/react";
-import Drawer from "react-modern-drawer";
-import "react-modern-drawer/dist/index.css";
-import { Box } from "@chakra-ui/react";
+
 import {
   Modal,
   ModalOverlay,
@@ -30,13 +38,6 @@ import {
   ModalCloseButton,
   Button,
 } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
-import { EmailIcon, LockIcon } from "@chakra-ui/icons";
-import axios from "axios";
-import { GiHamburgerMenu } from "react-icons/gi";
-import useHeaderProps from "./useHeaderProps";
-import { useLogin } from "../../Services/auth.service";
-import { useCart } from "react-use-cart";
 
 export const Header = () => {
   const { totalItems } = useCart();
@@ -81,8 +82,12 @@ export const Header = () => {
     lang,
     code,
     links,
+    Btn,
+    setBtn,
   } = useHeaderProps();
-
+const HandleBtnClick = ()=>{
+  setBtn(!Btn)
+}
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -292,7 +297,10 @@ export const Header = () => {
                       <MenuGroup title="">
                         {links.map((el) => {
                           return (
-                            <MenuItem className={s.header__main_menu} key={el.id}>
+                            <MenuItem
+                              className={s.header__main_menu}
+                              key={el.id}
+                            >
                               <Link
                                 className={`${s.header__profile} ${
                                   location.pathname === el.path ? s.active : ""
@@ -322,9 +330,22 @@ export const Header = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>oiewoief</ModalBody>
+          <ModalHeader className={s.header__top}>
+            <div className={s.header__top_content}>
+              <h2>Выберите способ получения</h2>
+              <p>Чтобы увидеть актуальное для нас меню </p>
+            </div>
+            <div className={s.header__top_close}>
+              <ModalCloseButton />
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            <div className={s.header__modal_left}>
+              <div className={s.header__left_top}>
+                <button onClick={HandleBtnClick} className={`${s.header__modal_btn} ${Btn ? s.active : ''}`}>wewe2e</button>
+              </div>
+            </div>
+          </ModalBody>
         </ModalContent>
       </Modal>
 
