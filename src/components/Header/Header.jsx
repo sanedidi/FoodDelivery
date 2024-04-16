@@ -17,6 +17,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import useHeaderProps from "./useHeaderProps";
 import { useLogin } from "../../Services/auth.service";
 import { useCart } from "react-use-cart";
+import { Textarea } from "@chakra-ui/react";
 import {
   InputGroup,
   InputLeftElement,
@@ -329,20 +330,21 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <Modal size={"xl"} isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className={s.header__top}>
             <div className={s.header__top_content}>
               <h2>Выберите способ получения</h2>
-              <p>Чтобы увидеть актуальное для нас меню </p>
+              <p>Чтобы увидеть актуальное для нас меню</p>
             </div>
             <div className={s.header__top_close}>
               <ModalCloseButton />
             </div>
           </ModalHeader>
           <ModalBody>
-            <div className={s.header__modal_main_content}>
+            {Btn === 1 ? (
+              <div className={s.header__modal_main_content}>
               <div className={s.header__modal_left}>
                 <div className={s.header__left_top}>
                   <button
@@ -367,12 +369,28 @@ export const Header = () => {
                     <Input placeholder="Адрес доставки" />
                   </div>
                   <div className={s.header__input_info}>
-                  <Input  placeholder="Дом" />
-                  <Input  placeholder="Етаж" />
-                  <Input  placeholder="Квартира" />
-                  <Input  placeholder="Подьезд" />
-
+                    <Input placeholder="Дом" />
+                    <Input placeholder="Етаж" />
+                    <Input placeholder="Квартира" />
+                    <Input placeholder="Подьезд" />
                   </div>
+                  <div className={s.header__input_comm}>
+                    <Textarea
+                      style={{ width: "100%" }}
+                      placeholder="Комментарий"
+                    />
+                  </div>
+                </div>
+                <div
+                  style={{ marginTop: "auto" }}
+                  className={s.header__main_modal_btn}
+                >
+                  <Button
+                    style={{ width: "100%", marginTop: "auto" }}
+                    colorScheme="transparent"
+                  >
+                    Выбрать
+                  </Button>
                 </div>
               </div>
               <div className={s.header__modal_right}>
@@ -382,6 +400,53 @@ export const Header = () => {
                 />
               </div>
             </div>
+            ) : (
+              <div className={s.header__modal_main_content}>
+              <div className={s.header__modal_left}>
+                <div className={s.header__left_top}>
+                  <button
+                    onClick={() => HandleBtnClick(1)}
+                    className={`${s.header__modal_btn} ${
+                      Btn === 1 ? s.active : ""
+                    }`}
+                  >
+                    Доставка
+                  </button>
+                  <button
+                    onClick={() => HandleBtnClick(2)}
+                    className={`${s.header__modal_btn} ${
+                      Btn === 2 ? s.active : ""
+                    }`}
+                  >
+                    Самовывоз
+                  </button>
+                </div>
+                <div className={s.header__inputs}>
+                  <div className={s.header__input}>
+                    <Input placeholder="Поиск по названию ресторана" />
+                  </div>
+                 
+                </div>
+                <div
+                  style={{ marginTop: "auto" }}
+                  className={s.header__main_modal_btn}
+                >
+                  <Button
+                    style={{ width: "100%", marginTop: "auto" }}
+                    colorScheme="transparent"
+                  >
+                    Выбрать
+                  </Button>
+                </div>
+              </div>
+              <div className={s.header__modal_right}>
+                <img
+                  src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
+                  alt=""
+                />
+              </div>
+            </div>
+            )}
           </ModalBody>
         </ModalContent>
       </Modal>

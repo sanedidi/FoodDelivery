@@ -11,6 +11,9 @@
         grid-template-columns: 1fr 1fr;
         justify-content: space-between ;
         gap: clamp(0.625rem, 0.398rem + 1.14vw, 1.25rem);
+        @media (max-width:720px) {
+            grid-template-columns: 1fr;
+        }
 
     }
     &__modal_right{
@@ -18,12 +21,36 @@
             width: 100%;
         }
     }
+    &__inputs{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    &__main_modal_btn{
+        button{
+            background-color: #7E5EA7;
+            :hover{
+                background-color: #7E5EA7;
+            }
+        }
+    }
+    &__modal_left{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    &__input_comm{
+       input{
+        max-height: 100px !important;
+       }
+    }
     &__input_info{
         display: flex;
         justify-content: space-between;
-
+        gap: 5px;
         input{
             font-size: 12px;
+            border-radius: 8px;
         }
     }
 
