@@ -189,3 +189,13 @@ h6 {
 .css-r6z5ec{
   z-index: 9999 !important;
 }
+
+.hh{
+  display: flex !important;
+  gap: 50px;
+}
+
+.chakra-modal__content{
+  width: 100% !important;
+  max-width: 1000px !important;
+}

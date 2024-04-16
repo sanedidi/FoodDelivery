@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import s from "./Header.module.scss";
 import logo from "../../assets/svg/logo.svg";
+import { Input } from "@chakra-ui/react";
 import LocationIcon from "../../assets/svg/LocationIcon.svg";
 import russian from "../../assets/svg/russian.svg";
 import { SlBasket } from "react-icons/sl";
@@ -17,7 +18,6 @@ import useHeaderProps from "./useHeaderProps";
 import { useLogin } from "../../Services/auth.service";
 import { useCart } from "react-use-cart";
 import {
-  Input,
   InputGroup,
   InputLeftElement,
   Menu,
@@ -85,9 +85,11 @@ export const Header = () => {
     Btn,
     setBtn,
   } = useHeaderProps();
-const HandleBtnClick = ()=>{
-  setBtn(!Btn)
-}
+
+  const HandleBtnClick = (selectedBtn) => {
+    setBtn(selectedBtn);
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -327,7 +329,7 @@ const HandleBtnClick = ()=>{
           </div>
         </div>
       </header>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal size={"xl"} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className={s.header__top}>
@@ -340,9 +342,44 @@ const HandleBtnClick = ()=>{
             </div>
           </ModalHeader>
           <ModalBody>
-            <div className={s.header__modal_left}>
-              <div className={s.header__left_top}>
-                <button onClick={HandleBtnClick} className={`${s.header__modal_btn} ${Btn ? s.active : ''}`}>wewe2e</button>
+            <div className={s.header__modal_main_content}>
+              <div className={s.header__modal_left}>
+                <div className={s.header__left_top}>
+                  <button
+                    onClick={() => HandleBtnClick(1)}
+                    className={`${s.header__modal_btn} ${
+                      Btn === 1 ? s.active : ""
+                    }`}
+                  >
+                    Доставка
+                  </button>
+                  <button
+                    onClick={() => HandleBtnClick(2)}
+                    className={`${s.header__modal_btn} ${
+                      Btn === 2 ? s.active : ""
+                    }`}
+                  >
+                    Самовывоз
+                  </button>
+                </div>
+                <div className={s.header__inputs}>
+                  <div className={s.header__input}>
+                    <Input placeholder="Адрес доставки" />
+                  </div>
+                  <div className={s.header__input_info}>
+                  <Input  placeholder="Дом" />
+                  <Input  placeholder="Етаж" />
+                  <Input  placeholder="Квартира" />
+                  <Input  placeholder="Подьезд" />
+
+                  </div>
+                </div>
+              </div>
+              <div className={s.header__modal_right}>
+                <img
+                  src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
+                  alt=""
+                />
               </div>
             </div>
           </ModalBody>
@@ -407,11 +444,7 @@ const HandleBtnClick = ()=>{
                     {showTimer ? (
                       <p
                         style={{
-                          display: showTimer
-                            ? "none"
-                            : "block" && !showTimer
-                            ? "none"
-                            : "block",
+                          display: showTimer && !showTimer ? "none" : "block",
                         }}
                       >
                         00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft} сек

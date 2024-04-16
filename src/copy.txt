@@ -1,1 +1,46 @@
 log out: onClick={handleLogout}
+
+
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader className={s.header__top}>
+            <div className={s.header__top_content}>
+              <h2>Выберите способ получения</h2>
+              <p>Чтобы увидеть актуальное для нас меню </p>
+            </div>
+            <div className={s.header__top_close}>
+              <ModalCloseButton />
+            </div>
+          </ModalHeader>
+          <ModalBody className={s.header__modal_body}>
+            <div className="hh">
+            <div className={s.header__modal_left}>
+              <div className={s.header__left_top}>
+                <button
+                  onClick={() => HandleBtnClick(1)}
+                  className={`${s.header__modal_btn} ${
+                    Btn === 1 ? s.active : ""
+                  }`}
+                >
+                  Доставка
+                </button>
+                <button
+                  onClick={() => HandleBtnClick(2)}
+                  className={`${s.header__modal_btn} ${
+                    Btn === 2 ? s.active : ""
+                  }`}
+                >
+                  Самовывоз
+                </button>
+              </div>
+            </div>
+            <div className={s.header__modal_right}>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEUAAACnej3aAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" alt="" />
+            </div>
+
+            </div>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
