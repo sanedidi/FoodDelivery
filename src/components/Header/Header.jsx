@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import s from "./Header.module.scss";
 import logo from "../../assets/svg/logo.svg";
-import { Input } from "@chakra-ui/react";
+import { Drawer, Input, Textarea } from "@chakra-ui/react";
 import LocationIcon from "../../assets/svg/LocationIcon.svg";
 import russian from "../../assets/svg/russian.svg";
 import { SlBasket } from "react-icons/sl";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FaCheck } from "react-icons/fa";
-import Drawer from "react-modern-drawer";
-import "react-modern-drawer/dist/index.css";
-import { Box } from "@chakra-ui/react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { Box, Button } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import { GiHamburgerMenu } from "react-icons/gi";
 import useHeaderProps from "./useHeaderProps";
 import { useLogin } from "../../Services/auth.service";
 import { useCart } from "react-use-cart";
-import { Textarea } from "@chakra-ui/react";
 import {
   InputGroup,
   InputLeftElement,
@@ -28,16 +25,12 @@ import {
   MenuItem,
   MenuList,
   Stack,
-} from "@chakra-ui/react";
-
-import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  Button,
 } from "@chakra-ui/react";
 
 export const Header = () => {
@@ -86,7 +79,8 @@ export const Header = () => {
     Btn,
     setBtn,
   } = useHeaderProps();
-
+  let size = "xl";
+  const gSize = size * 2;
   const HandleBtnClick = (selectedBtn) => {
     setBtn(selectedBtn);
   };
@@ -112,7 +106,7 @@ export const Header = () => {
       clearTimeout(timer);
     };
   }, [timeLeft]);
-  <ModalCloseButton onClick={() => setIsOpen(false)} />;
+
   const handleLangChange = (e) => {
     setLang(e.target.value);
   };
@@ -330,7 +324,7 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <Modal isOpen={isOpen} onClose={() => onClose(false)}>
+      <Modal isOpen={isOpen} onClose={() => onClose(false)} size="4xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className={s.header__top}>
@@ -343,64 +337,7 @@ export const Header = () => {
             </div>
           </ModalHeader>
           <ModalBody>
-            {Btn === 1 ? (
-              <div className={s.header__modal_main_content}>
-                <div className={s.header__modal_left}>
-                  <div className={s.header__left_top}>
-                    <button
-                      onClick={() => HandleBtnClick(1)}
-                      className={`${s.header__modal_btn} ${
-                        Btn === 1 ? s.active : ""
-                      }`}
-                    >
-                      Доставка
-                    </button>
-                    <button
-                      onClick={() => HandleBtnClick(2)}
-                      className={`${s.header__modal_btn} ${
-                        Btn === 2 ? s.active : ""
-                      }`}
-                    >
-                      Самовывоз
-                    </button>
-                  </div>
-                  <div className={s.header__inputs}>
-                    <div className={s.header__input}>
-                      <Input placeholder="Адрес доставки" />
-                    </div>
-                    <div className={s.header__input_info}>
-                      <Input placeholder="Дом" />
-                      <Input placeholder="Етаж" />
-                      <Input placeholder="Квартира" />
-                      <Input placeholder="Подьезд" />
-                    </div>
-                    <div className={s.header__input_comm}>
-                      <Textarea
-                        style={{ width: "100%" }}
-                        placeholder="Комментарий"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    style={{ marginTop: "auto" }}
-                    className={s.header__main_modal_btn}
-                  >
-                    <Button
-                      style={{ width: "100%", marginTop: "auto" }}
-                      colorScheme="transparent"
-                    >
-                      Выбрать
-                    </Button>
-                  </div>
-                </div>
-                <div className={s.header__modal_right}>
-                  <img
-                    src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
-                    alt=""
-                  />
-                </div>
-              </div>
-            ) : (
+            {Btn === 2 ? (
               <div className={s.header__modal_main_content}>
                 <div className={s.header__modal_left}>
                   <div className={s.header__left_top}>
@@ -429,6 +366,63 @@ export const Header = () => {
                   <div
                     style={{ marginTop: "auto" }}
                     className={s.header__main_modal_btn}
+                  >
+                    <Button
+                      style={{ width: "100%", marginTop: "auto" }}
+                      colorScheme="transparent"
+                    >
+                      Выбрать
+                    </Button>
+                  </div>
+                </div>
+                <div className={s.header__modal_right}>
+                  <img
+                    src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
+                    alt=""
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className={s.header__modal_main_content}>
+                <div className={s.header__modal_left}>
+                  <div className={s.header__left_top}>
+                    <button
+                      onClick={() => HandleBtnClick(1)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 2 ? s.active : ""
+                      }`}
+                    >
+                      Доставка
+                    </button>
+                    <button
+                      onClick={() => HandleBtnClick(2)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 1 ? s.active : ""
+                      }`}
+                    >
+                      Самовывоз
+                    </button>
+                  </div>
+                  <div className={s.header__inputs}>
+                    <div className={s.header__input}>
+                      <Input placeholder="Адрес доставки" />
+                    </div>
+                    <div className={s.header__input_info}>
+                      <Input placeholder="Дом" />
+                      <Input placeholder="Етаж" />
+                      <Input placeholder="Квартира" />
+                      <Input placeholder="Подьезд" />
+                    </div>
+                    <div className={s.header__input_comm}>
+                      <Textarea
+                        style={{ width: "100%" }}
+                        placeholder="Комментарий"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className={s.header__main_modal_btn}
+                    style={{ marginTop: "auto" }}
                   >
                     <Button
                       style={{ width: "100%", marginTop: "auto" }}

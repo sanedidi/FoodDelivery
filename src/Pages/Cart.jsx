@@ -7,33 +7,6 @@ const Cart = () => {
   const { items, isEmpty, emptyCart, updateItemQuantity, removeItem } =
     useCart();
 
-  // const postTest = () => {
-  //   axios
-  //     .post(
-  //       `https://api.telegram.org/bot5378253930:AAEW0rlP7j7KA50Txsyp
-  //       NSLLKvQ5jYnNPfc/sendMessage?chat_id=-1001553163227&text=${encodeURIComponent(
-  //         `<b>Details:</b>
-  //     <b>The operation was completed successfully!</b>
-  //     <b>our couriers will contact you soon!</b>
-  //     <b> Call Center: +998 99 855 73 85 </b>
-  //     <b>ISM: ${localStorage.getItem('ism')}</b>
-      
-  // ${items
-  //   .map((item) => {
-  //     return `
-  // <b>${item.name}</b>
-  // ${item.quantity} x ${item.price}  so'm = ${item.quantity} 
-  //     `;
-  //   })
-  //   .join('')}        
-  // <b>Total:</b> ${umumiySumma} so'm`
-  //       )}&parse_mode=html`
-  //     )
-  //     .then(() => {
-  //       emptyCart();
-  //       window.location.reload();
-  //     });
-  // };
 
   let umumiySumma = 0;
 
