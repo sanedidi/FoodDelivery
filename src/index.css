@@ -195,13 +195,24 @@ h6 {
   gap: 50px;
 }
 
-/* .css-pv22qu{
-  width: 100% !important;
-  max-width: 600px !important;
+.css-pv22qu{
+  
+}
+::-webkit-scrollbar {
+  width: .3125rem;
+  opacity: 0;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aeaeae;
+  border-radius: 3px;
 }
 
 
-.chakra-modal__content{
-  width: 100% !important;
-  max-width: 1000px !important;
-} */
+
+
+

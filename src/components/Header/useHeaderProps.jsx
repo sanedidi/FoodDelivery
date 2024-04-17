@@ -44,6 +44,48 @@ const useHeaderProps = () => {
       path: "/address",
     },
   ];
+  const address = [
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+    {
+      name:'Food Delivery Atlas',
+      desc:'улица Катартал, 28, Ташкент',
+      close:'Ресторан закроется в 22:00'
+    },
+  ]
 
   return {
     setShowPersonalInfoInput,
@@ -87,6 +129,7 @@ const useHeaderProps = () => {
     links,
     Btn,
     setBtn,
+    address
   };
 };
 
