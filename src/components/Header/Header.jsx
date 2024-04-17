@@ -112,7 +112,7 @@ export const Header = () => {
       clearTimeout(timer);
     };
   }, [timeLeft]);
-
+  <ModalCloseButton onClick={() => setIsOpen(false)} />;
   const handleLangChange = (e) => {
     setLang(e.target.value);
   };
@@ -330,7 +330,7 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal isOpen={isOpen} onClose={() => onClose(false)}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className={s.header__top}>
@@ -345,107 +345,106 @@ export const Header = () => {
           <ModalBody>
             {Btn === 1 ? (
               <div className={s.header__modal_main_content}>
-              <div className={s.header__modal_left}>
-                <div className={s.header__left_top}>
-                  <button
-                    onClick={() => HandleBtnClick(1)}
-                    className={`${s.header__modal_btn} ${
-                      Btn === 1 ? s.active : ""
-                    }`}
+                <div className={s.header__modal_left}>
+                  <div className={s.header__left_top}>
+                    <button
+                      onClick={() => HandleBtnClick(1)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 1 ? s.active : ""
+                      }`}
+                    >
+                      Доставка
+                    </button>
+                    <button
+                      onClick={() => HandleBtnClick(2)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 2 ? s.active : ""
+                      }`}
+                    >
+                      Самовывоз
+                    </button>
+                  </div>
+                  <div className={s.header__inputs}>
+                    <div className={s.header__input}>
+                      <Input placeholder="Адрес доставки" />
+                    </div>
+                    <div className={s.header__input_info}>
+                      <Input placeholder="Дом" />
+                      <Input placeholder="Етаж" />
+                      <Input placeholder="Квартира" />
+                      <Input placeholder="Подьезд" />
+                    </div>
+                    <div className={s.header__input_comm}>
+                      <Textarea
+                        style={{ width: "100%" }}
+                        placeholder="Комментарий"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    style={{ marginTop: "auto" }}
+                    className={s.header__main_modal_btn}
                   >
-                    Доставка
-                  </button>
-                  <button
-                    onClick={() => HandleBtnClick(2)}
-                    className={`${s.header__modal_btn} ${
-                      Btn === 2 ? s.active : ""
-                    }`}
-                  >
-                    Самовывоз
-                  </button>
+                    <Button
+                      style={{ width: "100%", marginTop: "auto" }}
+                      colorScheme="transparent"
+                    >
+                      Выбрать
+                    </Button>
+                  </div>
                 </div>
-                <div className={s.header__inputs}>
-                  <div className={s.header__input}>
-                    <Input placeholder="Адрес доставки" />
-                  </div>
-                  <div className={s.header__input_info}>
-                    <Input placeholder="Дом" />
-                    <Input placeholder="Етаж" />
-                    <Input placeholder="Квартира" />
-                    <Input placeholder="Подьезд" />
-                  </div>
-                  <div className={s.header__input_comm}>
-                    <Textarea
-                      style={{ width: "100%" }}
-                      placeholder="Комментарий"
-                    />
-                  </div>
-                </div>
-                <div
-                  style={{ marginTop: "auto" }}
-                  className={s.header__main_modal_btn}
-                >
-                  <Button
-                    style={{ width: "100%", marginTop: "auto" }}
-                    colorScheme="transparent"
-                  >
-                    Выбрать
-                  </Button>
+                <div className={s.header__modal_right}>
+                  <img
+                    src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
+                    alt=""
+                  />
                 </div>
               </div>
-              <div className={s.header__modal_right}>
-                <img
-                  src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
-                  alt=""
-                />
-              </div>
-            </div>
             ) : (
               <div className={s.header__modal_main_content}>
-              <div className={s.header__modal_left}>
-                <div className={s.header__left_top}>
-                  <button
-                    onClick={() => HandleBtnClick(1)}
-                    className={`${s.header__modal_btn} ${
-                      Btn === 1 ? s.active : ""
-                    }`}
-                  >
-                    Доставка
-                  </button>
-                  <button
-                    onClick={() => HandleBtnClick(2)}
-                    className={`${s.header__modal_btn} ${
-                      Btn === 2 ? s.active : ""
-                    }`}
-                  >
-                    Самовывоз
-                  </button>
-                </div>
-                <div className={s.header__inputs}>
-                  <div className={s.header__input}>
-                    <Input placeholder="Поиск по названию ресторана" />
+                <div className={s.header__modal_left}>
+                  <div className={s.header__left_top}>
+                    <button
+                      onClick={() => HandleBtnClick(1)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 1 ? s.active : ""
+                      }`}
+                    >
+                      Доставка
+                    </button>
+                    <button
+                      onClick={() => HandleBtnClick(2)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 2 ? s.active : ""
+                      }`}
+                    >
+                      Самовывоз
+                    </button>
                   </div>
-                 
-                </div>
-                <div
-                  style={{ marginTop: "auto" }}
-                  className={s.header__main_modal_btn}
-                >
-                  <Button
-                    style={{ width: "100%", marginTop: "auto" }}
-                    colorScheme="transparent"
+                  <div className={s.header__inputs}>
+                    <div className={s.header__input}>
+                      <Input placeholder="Поиск по названию ресторана" />
+                    </div>
+                  </div>
+                  <div
+                    style={{ marginTop: "auto" }}
+                    className={s.header__main_modal_btn}
                   >
-                    Выбрать
-                  </Button>
+                    <Button
+                      style={{ width: "100%", marginTop: "auto" }}
+                      colorScheme="transparent"
+                    >
+                      Выбрать
+                    </Button>
+                  </div>
+                </div>
+                <div className={s.header__modal_right}>
+                  <img
+                    src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
+                    alt=""
+                  />
                 </div>
               </div>
-              <div className={s.header__modal_right}>
-                <img
-                  src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
-                  alt=""
-                />
-              </div>
-            </div>
             )}
           </ModalBody>
         </ModalContent>
