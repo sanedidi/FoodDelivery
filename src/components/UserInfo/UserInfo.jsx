@@ -1,31 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import s from "./UserInfo.module.scss";
+import { Skeleton, Stack } from "@chakra-ui/react";
 
-export const UserInfo = ({ id, fullName, phoneNumber }) => {
+export const UserInfo = ({ id }) => {
   const [profileData, setProfileData] = useState(null);
 
   const fetchProfileData = async () => {
     try {
-      const response = await axios.get(`https://delivery-q991.onrender.com/api/v1/user/profile/${id}`);
+      const response = await axios.get(
+        `https://delivery-q991.onrender.com/api/v1/user/profile/`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       setProfileData(response.data);
     } catch (error) {
-      console.error('Ошибка при получении данных профиля:', error);
+      console.error("Ошибка при получении данных профиля:", error);
     }
   };
 
   useEffect(() => {
     fetchProfileData();
-  }, [id]); 
-
-  if (!profileData) {
-    return <div>Загрузка данных...</div>;
-  }
+  }, [id]);
 
   return (
-    <div>
-      <h2>Данные профиля</h2>
-      <p>Имя: {fullName}</p>
-      <p>Номер телефона: {phoneNumber}</p>
+    <div className={s.profile__wrapper}>
+      <div className={s.profile__title}>
+        <h2>Профиль</h2>
+      </div>
+      <div className={s.profile__main_data}>
+        {profileData ? (
+          <div className={s.profile__data}>
+            <div className={s.profile__item}>
+              <h2>Личные данные</h2>
+              <p> {profileData.full_name}</p>
+            </div>
+            <div className={s.profile__item2}>
+              <div className={s.profile__user_data}>
+                <h3> Дата рождение</h3>
+                <p> неизвестный</p>
+              </div>
+              <div className={s.profile__user_data}>
+                <h3> Номер телефона</h3>
+                <p> {profileData.phone_number}</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className={s.profile__loading}>
+            <Stack>
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+              <Skeleton height="20px" />
+            </Stack>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

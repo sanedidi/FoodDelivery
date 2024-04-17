@@ -8,9 +8,7 @@ const Profile = () => {
     <Header />
     <section className="profile">
       <div className="container">
-        <div className="profile__wrapper">
           <UserInfo />
-        </div>
       </div>
     </section>
     </>
