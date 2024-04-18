@@ -2,6 +2,7 @@ import React from 'react';
 import { useCart } from 'react-use-cart';
 import axios from 'axios';
 import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 
 const Cart = () => {
   const { items, isEmpty, emptyCart, updateItemQuantity, removeItem } =
@@ -61,6 +62,7 @@ const Cart = () => {
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 };

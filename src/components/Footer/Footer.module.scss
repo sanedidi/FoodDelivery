@@ -1,0 +1,38 @@
+.footer {
+  margin: 50px 0 0;
+  border-top: 2px solid rgba(223, 223, 223, 1);
+  padding: 20px;
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 0.7fr 1fr;
+    border-bottom: 2px solid rgba(223, 223, 223, 1);
+    padding: 20px;
+  }
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    a {
+      font-weight: 500;
+      color: black;
+    }
+  }
+  &__right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  &__text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: left;
+    color: rgba(127, 127, 127, 1);
+  }
+  &__soc{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}

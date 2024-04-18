@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../components/Header/Header'
 import UserInfo from '../components/UserInfo/UserInfo'
+import Footer from '../components/Footer/Footer'
 
 const Profile = () => {
   return (
@@ -11,6 +12,7 @@ const Profile = () => {
           <UserInfo />
       </div>
     </section>
+    <Footer />
     </>
   )
 }
