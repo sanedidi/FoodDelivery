@@ -86,20 +86,6 @@ export const Header = () => {
     setBtn(selectedBtn);
   };
 
-  const [deliveryOrPickup, setDeliveryOrPickup] = useState("delivery"); // Состояние для выбора способа получения
-
-  // Обработчик события для кнопки доставки
-  const handleDeliveryClick = () => {
-    setDeliveryOrPickup("delivery");
-    setIsOpenSecondModal(true); // Открывает модальное окно для доставки
-  };
-
-  // Обработчик события для кнопки самовывоза
-  const handlePickupClick = () => {
-    setDeliveryOrPickup("pickup");
-    setIsOpenSecondModal(true); // Открывает модальное окно для самовывоза
-  };
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -273,9 +259,7 @@ export const Header = () => {
                 </div>
                 <div className={s.header__options_info}>
                   <p>Доставка или Самовызов</p>
-                  <button className={s.header__purp} onClick={onOpen}>
-                    Выберите способ получения
-                  </button>
+                  <button className={s.header__purp} onClick={onOpen}>Выберите способ получения</button>
                 </div>
               </div>
               <div className={s.header__language}>
@@ -354,26 +338,26 @@ export const Header = () => {
             </div>
           </ModalHeader>
           <ModalBody>
-            {Btn === 1 ? (
+            {Btn === 2 ? (
               <div className={s.header__modal_main_content}>
                 <div className={s.header__modal_left}>
                   <div className={s.header__left_top}>
-                    <button
-                      onClick={() => HandleBtnClick(1)}
-                      className={`${s.header__modal_btn} ${
-                        Btn === 1 ? s.active : ""
-                      }`}
-                    >
-                      Доставка
-                    </button>
-                    <button
-                      onClick={() => HandleBtnClick(2)}
-                      className={`${s.header__modal_btn} ${
-                        Btn === 2 ? s.active : ""
-                      }`}
-                    >
-                      Самовывоз
-                    </button>
+                  <button
+  onClick={() => HandleBtnClick(1)}
+  className={`${s.header__modal_btn} ${
+    Btn === 1 ? s.active : ""
+  }`}
+>
+  Доставка
+</button>
+<button
+  onClick={() => HandleBtnClick(2)}
+  className={`${s.header__modal_btn} ${
+    Btn === 2 ? s.active : ""
+  }`}
+>
+  Самовывоз
+</button>
                   </div>
                   <div className={s.header__inputs}>
                     <div className={s.header__input}>
@@ -444,22 +428,22 @@ export const Header = () => {
               <div className={s.header__modal_main_content}>
                 <div className={s.header__modal_left}>
                   <div className={s.header__left_top}>
-                    <button
-                      onClick={() => HandleBtnClick(1)}
-                      className={`${s.header__modal_btn} ${
-                        Btn === 1 ? s.active : ""
-                      }`}
-                    >
-                      Доставка
-                    </button>
-                    <button
-                      onClick={() => HandleBtnClick(2)}
-                      className={`${s.header__modal_btn} ${
-                        Btn === 2 ? s.active : ""
-                      }`}
-                    >
-                      Самовывоз
-                    </button>
+                  <button
+  onClick={() => HandleBtnClick(1)}
+  className={`${s.header__modal_btn} ${
+    Btn === 1 ? s.active : ""
+  }`}
+>
+  Доставка
+</button>
+<button
+  onClick={() => HandleBtnClick(2)}
+  className={`${s.header__modal_btn} ${
+    Btn === 2 ? s.active : ""
+  }`}
+>
+  Самовывоз
+</button>
                   </div>
                   <div className={s.header__inputs}>
                     <div className={s.header__input}>
@@ -501,48 +485,176 @@ export const Header = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Drawer isOpen={isOpenBurger} placement="right" onClose={toggleDrawer}>
-        <Box p={4}>
-          <Button onClick={toggleDrawer}>Close</Button>
-          <Stack spacing={10} align="stretch">
-            <Link
-              onClick={() => handlePageClick("/")}
-              className={`${s.header__link} ${
-                location.pathname === "/" ? s.active : ""
-              }`}
-              to="/"
-            >
-              Меню
-            </Link>
-            <Link
-              onClick={() => handlePageClick("/branches")}
-              className={`${s.header__link} ${
-                location.pathname === "/branches" ? s.active : ""
-              }`}
-              to="/branches"
-            >
-              Филиалы
-            </Link>
-            <Link
-              onClick={() => handlePageClick("/aboutus")}
-              className={`${s.header__link} ${
-                location.pathname === "/aboutus" ? s.active : ""
-              }`}
-              to="/aboutus"
-            >
-              О нас
-            </Link>
-            <Link
-              onClick={() => handlePageClick("/contact")}
-              className={`${s.header__link} ${
-                location.pathname === "/contact" ? s.active : ""
-              }`}
-              to="/contact"
-            >
-              Контакты
-            </Link>
-          </Stack>
-        </Box>
+
+      <Modal
+        className={s.header__registration}
+        isOpen={isOpenSecondModal}
+        onClose={() => setIsOpenSecondModal(false)}
+      >
+        <ModalOverlay />
+        <ModalContent className={s.header__modal_main}>
+          <Box className={s.header__modal_cont}>
+            <Box>
+              <ModalCloseButton />
+            </Box>
+            <ModalHeader className={s.header__modal__title}>
+              Вход на сайт
+            </ModalHeader>
+            <p className={s.header__modal_subTitle}>
+              Войдите с вашим email или номером телефона
+            </p>
+          </Box>
+
+          <ModalBody className={s.header__email}>
+            <Box className={s.header__email_act}>
+              {showEmailInput && (
+                <Stack spacing={4}>
+                  <Box>
+                    <p>Email или номер телефона</p>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <EmailIcon color="gray.300" />
+                      </InputLeftElement>
+                      <Input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </InputGroup>
+                  </Box>
+                </Stack>
+              )}
+              {showCodeInput && (
+                <Box>
+                  <p>Код подтверждения из email</p>
+                  <Stack spacing={4}>
+                    <InputGroup>
+                      <InputLeftElement pointerEvents="none">
+                        <LockIcon color="gray.300" />
+                      </InputLeftElement>
+                      <Input
+                        type="text"
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
+                        className={`${s.input} ${!isCodeValid ? s.error : ""}`}
+                      />
+                    </InputGroup>
+                  </Stack>
+                  <div>
+                    {showTimer ? (
+                      <p
+                        style={{
+                          display: showTimer && !showTimer ? "none" : "block",
+                        }}
+                      >
+                        00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft} сек
+                      </p>
+                    ) : (
+                      <p style={{ color: "red" }} onClick={handleSendCode}>
+                        {resendButtonText} ?
+                      </p>
+                    )}
+                  </div>
+                  <Button
+                    className={s.header__btn}
+                    onClick={handleVerifyCode}
+                    style={{ backgroundColor: code ? "#7e5fa5" : "gray" }}
+                  >
+                    Отправить код
+                  </Button>
+                </Box>
+              )}
+              {showPersonalInfoInput && (
+                <Box>
+                  <p>ФИО</p>
+                  <Stack spacing={4}>
+                    <InputGroup>
+                      <Input
+                        type="text"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                      />
+                    </InputGroup>
+                  </Stack>
+                  <p>Номер телефона</p>
+                  <Stack spacing={4}>
+                    <InputGroup>
+                      <Input
+                        type="tel"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                      />
+                    </InputGroup>
+                  </Stack>
+                  <Button
+                    onClick={handleRegistration}
+                    className={s.header__btn}
+                    style={{
+                      backgroundColor:
+                        fullName && phoneNumber ? "#7e5fa5" : "gray",
+                    }}
+                  >
+                    Зарегистрироваться
+                  </Button>
+                </Box>
+              )}
+              {!showCodeInput && !showPersonalInfoInput && (
+                <Button
+                  className={s.header__btn}
+                  onClick={handleEmailButtonClick}
+                  style={{
+                    backgroundColor:
+                      email && !resendDisabled ? "#7e5fa5" : "gray",
+                  }}
+                  disabled={resendDisabled}
+                >
+                  Отправить код
+                </Button>
+              )}
+            </Box>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <Drawer
+        open={isOpenBurger}
+        onClose={toggleDrawer}
+        direction="right"
+        className={s.header__main_burger}
+      >
+        <div className={s.header__main_link}>
+          <Link
+            to="/"
+            className={`${s.header__link} ${
+              location.pathname === "/" ? s.active : ""
+            }`}
+          >
+            Меню
+          </Link>
+          <Link
+            to="/branches"
+            className={`${s.header__link} ${
+              location.pathname === "/branches" ? s.active : ""
+            }`}
+          >
+            Филиалы
+          </Link>
+          <Link
+            to="/aboutus"
+            className={`${s.header__link} ${
+              location.pathname === "/aboutus" ? s.active : ""
+            }`}
+          >
+            О нас
+          </Link>
+          <Link
+            to="/contact"
+            className={`${s.header__link} ${
+              location.pathname === "/contact" ? s.active : ""
+            }`}
+          >
+            Контакты
+          </Link>
+        </div>
       </Drawer>
     </>
   );
