@@ -22,6 +22,20 @@ export const UserInfo = ({ id }) => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await axios.post(`https://delivery-q991.onrender.com/logout`,
+    {
+      headers:{
+        Authorization: `Bearer ${localStorage.removeItem('token')}`
+      }
+    });
+      console.log("Успешный выход из аккаунта");
+    } catch (error) {
+      console.error("Ошибка при выходе из аккаунта:", error);
+    }
+  };
+
   useEffect(() => {
     fetchProfileData();
   }, [id]);
@@ -52,13 +66,18 @@ export const UserInfo = ({ id }) => {
         ) : (
           <div className={s.profile__loading}>
             <Stack>
-              <Skeleton height="20px" />
-              <Skeleton height="20px" />
-              <Skeleton height="20px" />
+              <Skeleton padding={"20px"} height="20px" />
+              <Skeleton padding={"20px"} height="20px" />
+              <Skeleton padding={"20px"} height="20px" />
+              <Skeleton padding={"20px"} height="20px" />
             </Stack>
           </div>
         )}
+        <div className={s.profile__edit}>
+          <button>Изменить данные</button>
+        </div>
       </div>
+      <button className={s.profile__logOut} onClick={handleLogout}>Выйти из аккаунта</button>
     </div>
   );
 };

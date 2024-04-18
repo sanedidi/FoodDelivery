@@ -5,12 +5,15 @@
     align-items: center;
     justify-content: space-between;
   }
+  &__purp{
+    color: #7d5eaa;
+  }
   &__main_scroll {
     display: flex;
 
     flex-direction: column;
     gap: 5px;
-    max-height: 300px;
+    max-height: 230px;
     overflow-y: scroll;
     /* width */
     

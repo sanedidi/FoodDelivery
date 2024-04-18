@@ -46,41 +46,49 @@ const useHeaderProps = () => {
   ];
   const address = [
     {
+      id:1,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'
     },
     {
+      id:2,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'
     },
     {
+      id:3,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'
     },
     {
+      id:4,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'
     },
     {
+      id:5,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'
     },
     {
+      id:6,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'
     },
     {
+      id:7,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'
     },
     {
+      id:8,
       name:'Food Delivery Atlas',
       desc:'улица Катартал, 28, Ташкент',
       close:'Ресторан закроется в 22:00'

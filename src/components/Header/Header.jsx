@@ -86,6 +86,20 @@ export const Header = () => {
     setBtn(selectedBtn);
   };
 
+  const [deliveryOrPickup, setDeliveryOrPickup] = useState("delivery"); // Состояние для выбора способа получения
+
+  // Обработчик события для кнопки доставки
+  const handleDeliveryClick = () => {
+    setDeliveryOrPickup("delivery");
+    setIsOpenSecondModal(true); // Открывает модальное окно для доставки
+  };
+
+  // Обработчик события для кнопки самовывоза
+  const handlePickupClick = () => {
+    setDeliveryOrPickup("pickup");
+    setIsOpenSecondModal(true); // Открывает модальное окно для самовывоза
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -259,7 +273,9 @@ export const Header = () => {
                 </div>
                 <div className={s.header__options_info}>
                   <p>Доставка или Самовызов</p>
-                  <button onClick={onOpen}>Выберите способ получения</button>
+                  <button className={s.header__purp} onClick={onOpen}>
+                    Выберите способ получения
+                  </button>
                 </div>
               </div>
               <div className={s.header__language}>
@@ -338,7 +354,7 @@ export const Header = () => {
             </div>
           </ModalHeader>
           <ModalBody>
-            {Btn === 2 ? (
+            {Btn === 1 ? (
               <div className={s.header__modal_main_content}>
                 <div className={s.header__modal_left}>
                   <div className={s.header__left_top}>
@@ -366,9 +382,9 @@ export const Header = () => {
                   </div>
                   <div className={s.header__scroll}>
                     <div className={s.header__main_scroll}>
-                      {address.map((el) => {
+                      {address.map((el,id) => {
                         return (
-                          <div className={s.header__address}>
+                          <div key={id} className={s.header__address}>
                             <div className={s.header__address_top}>
                               <div className={s.header__name}>
                                 <svg
@@ -381,16 +397,16 @@ export const Header = () => {
                                   <path
                                     d="M21.5 10C21.5 17 12.5 23 12.5 23C12.5 23 3.5 17 3.5 10C3.5 7.61305 4.44821 5.32387 6.13604 3.63604C7.82387 1.94821 10.1131 1 12.5 1C14.8869 1 17.1761 1.94821 18.864 3.63604C20.5518 5.32387 21.5 7.61305 21.5 10Z"
                                     stroke="#7E5EA7"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                   />
                                   <path
                                     d="M12.5 13C14.1569 13 15.5 11.6569 15.5 10C15.5 8.34315 14.1569 7 12.5 7C10.8431 7 9.5 8.34315 9.5 10C9.5 11.6569 10.8431 13 12.5 13Z"
                                     stroke="#7E5EA7"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                   />
                                 </svg>
                                 <h2>{el.name}</h2>
@@ -431,7 +447,7 @@ export const Header = () => {
                     <button
                       onClick={() => HandleBtnClick(1)}
                       className={`${s.header__modal_btn} ${
-                        Btn === 2 ? s.active : ""
+                        Btn === 1 ? s.active : ""
                       }`}
                     >
                       Доставка
@@ -439,7 +455,7 @@ export const Header = () => {
                     <button
                       onClick={() => HandleBtnClick(2)}
                       className={`${s.header__modal_btn} ${
-                        Btn === 1 ? s.active : ""
+                        Btn === 2 ? s.active : ""
                       }`}
                     >
                       Самовывоз
@@ -485,176 +501,48 @@ export const Header = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
-
-      <Modal
-        className={s.header__registration}
-        isOpen={isOpenSecondModal}
-        onClose={() => setIsOpenSecondModal(false)}
-      >
-        <ModalOverlay />
-        <ModalContent className={s.header__modal_main}>
-          <Box className={s.header__modal_cont}>
-            <Box>
-              <ModalCloseButton />
-            </Box>
-            <ModalHeader className={s.header__modal__title}>
-              Вход на сайт
-            </ModalHeader>
-            <p className={s.header__modal_subTitle}>
-              Войдите с вашим email или номером телефона
-            </p>
-          </Box>
-
-          <ModalBody className={s.header__email}>
-            <Box className={s.header__email_act}>
-              {showEmailInput && (
-                <Stack spacing={4}>
-                  <Box>
-                    <p>Email или номер телефона</p>
-                    <InputGroup>
-                      <InputLeftElement pointerEvents="none">
-                        <EmailIcon color="gray.300" />
-                      </InputLeftElement>
-                      <Input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </InputGroup>
-                  </Box>
-                </Stack>
-              )}
-              {showCodeInput && (
-                <Box>
-                  <p>Код подтверждения из email</p>
-                  <Stack spacing={4}>
-                    <InputGroup>
-                      <InputLeftElement pointerEvents="none">
-                        <LockIcon color="gray.300" />
-                      </InputLeftElement>
-                      <Input
-                        type="text"
-                        value={code}
-                        onChange={(e) => setCode(e.target.value)}
-                        className={`${s.input} ${!isCodeValid ? s.error : ""}`}
-                      />
-                    </InputGroup>
-                  </Stack>
-                  <div>
-                    {showTimer ? (
-                      <p
-                        style={{
-                          display: showTimer && !showTimer ? "none" : "block",
-                        }}
-                      >
-                        00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft} сек
-                      </p>
-                    ) : (
-                      <p style={{ color: "red" }} onClick={handleSendCode}>
-                        {resendButtonText} ?
-                      </p>
-                    )}
-                  </div>
-                  <Button
-                    className={s.header__btn}
-                    onClick={handleVerifyCode}
-                    style={{ backgroundColor: code ? "#7e5fa5" : "gray" }}
-                  >
-                    Отправить код
-                  </Button>
-                </Box>
-              )}
-              {showPersonalInfoInput && (
-                <Box>
-                  <p>ФИО</p>
-                  <Stack spacing={4}>
-                    <InputGroup>
-                      <Input
-                        type="text"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                      />
-                    </InputGroup>
-                  </Stack>
-                  <p>Номер телефона</p>
-                  <Stack spacing={4}>
-                    <InputGroup>
-                      <Input
-                        type="tel"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                      />
-                    </InputGroup>
-                  </Stack>
-                  <Button
-                    onClick={handleRegistration}
-                    className={s.header__btn}
-                    style={{
-                      backgroundColor:
-                        fullName && phoneNumber ? "#7e5fa5" : "gray",
-                    }}
-                  >
-                    Зарегистрироваться
-                  </Button>
-                </Box>
-              )}
-              {!showCodeInput && !showPersonalInfoInput && (
-                <Button
-                  className={s.header__btn}
-                  onClick={handleEmailButtonClick}
-                  style={{
-                    backgroundColor:
-                      email && !resendDisabled ? "#7e5fa5" : "gray",
-                  }}
-                  disabled={resendDisabled}
-                >
-                  Отправить код
-                </Button>
-              )}
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-      <Drawer
-        open={isOpenBurger}
-        onClose={toggleDrawer}
-        direction="right"
-        className={s.header__main_burger}
-      >
-        <div className={s.header__main_link}>
-          <Link
-            to="/"
-            className={`${s.header__link} ${
-              location.pathname === "/" ? s.active : ""
-            }`}
-          >
-            Меню
-          </Link>
-          <Link
-            to="/branches"
-            className={`${s.header__link} ${
-              location.pathname === "/branches" ? s.active : ""
-            }`}
-          >
-            Филиалы
-          </Link>
-          <Link
-            to="/aboutus"
-            className={`${s.header__link} ${
-              location.pathname === "/aboutus" ? s.active : ""
-            }`}
-          >
-            О нас
-          </Link>
-          <Link
-            to="/contact"
-            className={`${s.header__link} ${
-              location.pathname === "/contact" ? s.active : ""
-            }`}
-          >
-            Контакты
-          </Link>
-        </div>
+      <Drawer isOpen={isOpenBurger} placement="right" onClose={toggleDrawer}>
+        <Box p={4}>
+          <Button onClick={toggleDrawer}>Close</Button>
+          <Stack spacing={10} align="stretch">
+            <Link
+              onClick={() => handlePageClick("/")}
+              className={`${s.header__link} ${
+                location.pathname === "/" ? s.active : ""
+              }`}
+              to="/"
+            >
+              Меню
+            </Link>
+            <Link
+              onClick={() => handlePageClick("/branches")}
+              className={`${s.header__link} ${
+                location.pathname === "/branches" ? s.active : ""
+              }`}
+              to="/branches"
+            >
+              Филиалы
+            </Link>
+            <Link
+              onClick={() => handlePageClick("/aboutus")}
+              className={`${s.header__link} ${
+                location.pathname === "/aboutus" ? s.active : ""
+              }`}
+              to="/aboutus"
+            >
+              О нас
+            </Link>
+            <Link
+              onClick={() => handlePageClick("/contact")}
+              className={`${s.header__link} ${
+                location.pathname === "/contact" ? s.active : ""
+              }`}
+              to="/contact"
+            >
+              Контакты
+            </Link>
+          </Stack>
+        </Box>
       </Drawer>
     </>
   );

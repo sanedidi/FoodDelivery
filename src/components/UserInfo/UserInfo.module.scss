@@ -13,11 +13,14 @@
     padding: 10px;
     border-radius: 12px;
     box-shadow: 2px 2px 20px 0px #0000001a;
+    padding: 30px 20px 40px;
   }
   &__data {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
   }
   &__item {
     display: flex;
@@ -51,5 +54,25 @@
       font-size: 18px;
       font-weight: 500;
     }
+  }
+  &__title {
+    font-size: 30px;
+    font-weight: 600;
+    color: #000;
+  }
+  &__edit {
+    button {
+      color: rgba(126, 95, 165, 1);
+      font-size: 18px;
+      font-weight: 600;
+      text-align: left;
+    }
+  }
+  &__logOut {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 29.05px;
+    text-align: left;
+    color: rgba(127, 127, 127, 1);
   }
 }
