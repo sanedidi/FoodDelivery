@@ -174,7 +174,7 @@ export const Header = () => {
           },
         }
       );
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", token);
       setIsLoggedIn(true);
       setIsOpenSecondModal(false);
     } catch (error) {
@@ -259,7 +259,9 @@ export const Header = () => {
                 </div>
                 <div className={s.header__options_info}>
                   <p>Доставка или Самовызов</p>
-                  <button className={s.header__purp} onClick={onOpen}>Выберите способ получения</button>
+                  <button className={s.header__purp} onClick={onOpen}>
+                    Выберите способ получения
+                  </button>
                 </div>
               </div>
               <div className={s.header__language}>
@@ -342,22 +344,22 @@ export const Header = () => {
               <div className={s.header__modal_main_content}>
                 <div className={s.header__modal_left}>
                   <div className={s.header__left_top}>
-                  <button
-  onClick={() => HandleBtnClick(1)}
-  className={`${s.header__modal_btn} ${
-    Btn === 1 ? s.active : ""
-  }`}
->
-  Доставка
-</button>
-<button
-  onClick={() => HandleBtnClick(2)}
-  className={`${s.header__modal_btn} ${
-    Btn === 2 ? s.active : ""
-  }`}
->
-  Самовывоз
-</button>
+                    <button
+                      onClick={() => HandleBtnClick(1)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 1 ? s.active : ""
+                      }`}
+                    >
+                      Доставка
+                    </button>
+                    <button
+                      onClick={() => HandleBtnClick(2)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 2 ? s.active : ""
+                      }`}
+                    >
+                      Самовызоз
+                    </button>
                   </div>
                   <div className={s.header__inputs}>
                     <div className={s.header__input}>
@@ -366,7 +368,7 @@ export const Header = () => {
                   </div>
                   <div className={s.header__scroll}>
                     <div className={s.header__main_scroll}>
-                      {address.map((el,id) => {
+                      {address.map((el, id) => {
                         return (
                           <div key={id} className={s.header__address}>
                             <div className={s.header__address_top}>
@@ -418,32 +420,29 @@ export const Header = () => {
                   </div>
                 </div>
                 <div className={s.header__modal_right}>
-                  <img
-                    src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
-                    alt=""
-                  />
+                  <p>карта</p>
                 </div>
               </div>
             ) : (
               <div className={s.header__modal_main_content}>
                 <div className={s.header__modal_left}>
                   <div className={s.header__left_top}>
-                  <button
-  onClick={() => HandleBtnClick(1)}
-  className={`${s.header__modal_btn} ${
-    Btn === 1 ? s.active : ""
-  }`}
->
-  Доставка
-</button>
-<button
-  onClick={() => HandleBtnClick(2)}
-  className={`${s.header__modal_btn} ${
-    Btn === 2 ? s.active : ""
-  }`}
->
-  Самовывоз
-</button>
+                    <button
+                      onClick={() => HandleBtnClick(1)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 1 ? s.active : ""
+                      }`}
+                    >
+                      Доставка
+                    </button>
+                    <button
+                      onClick={() => HandleBtnClick(2)}
+                      className={`${s.header__modal_btn} ${
+                        Btn === 2 ? s.active : ""
+                      }`}
+                    >
+                      Самовывоз
+                    </button>
                   </div>
                   <div className={s.header__inputs}>
                     <div className={s.header__input}>
@@ -532,15 +531,23 @@ export const Header = () => {
                       <InputLeftElement pointerEvents="none">
                         <LockIcon color="gray.300" />
                       </InputLeftElement>
+
                       <Input
                         type="text"
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
                         className={`${s.input} ${!isCodeValid ? s.error : ""}`}
                       />
+                      <p
+                        className={`${s.error__text} ${
+                          isCodeValid ? s.error_message : ""
+                        }`}
+                      >
+                        Введен неправильный код
+                      </p>
                     </InputGroup>
                   </Stack>
-                  <div>
+                  <div className={s.header__timer}>
                     {showTimer ? (
                       <p
                         style={{
@@ -554,14 +561,14 @@ export const Header = () => {
                         {resendButtonText} ?
                       </p>
                     )}
+                    <Button
+                      className={s.header__btn}
+                      onClick={handleVerifyCode}
+                      style={{ backgroundColor: code ? "#7e5fa5" : "gray" }}
+                    >
+                      Выслать код
+                    </Button>
                   </div>
-                  <Button
-                    className={s.header__btn}
-                    onClick={handleVerifyCode}
-                    style={{ backgroundColor: code ? "#7e5fa5" : "gray" }}
-                  >
-                    Отправить код
-                  </Button>
                 </Box>
               )}
               {showPersonalInfoInput && (

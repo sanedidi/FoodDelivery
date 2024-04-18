@@ -1,69 +1,8 @@
-        <ModalContent>
-          <ModalHeader className={s.header__top}>
-            <div className={s.header__top_content}>
-              <h2>Выберите способ получения</h2>
-              <p>Чтобы увидеть актуальное для нас меню </p>
-            </div>
-            <div className={s.header__top_close}>
-              <ModalCloseButton />
-            </div>
-          </ModalHeader>
-          <ModalBody>
-            <div className={s.header__modal_main_content}>
-              <div className={s.header__modal_left}>
-                <div className={s.header__left_top}>
-                  <button
-                    onClick={() => HandleBtnClick(1)}
-                    className={`${s.header__modal_btn} ${
-                      Btn === 1 ? s.active : ""
-                    }`}
-                  >
-                    Доставка
-                  </button>
-                  <button
-                    onClick={() => HandleBtnClick(2)}
-                    className={`${s.header__modal_btn} ${
-                      Btn === 2 ? s.active : ""
-                    }`}
-                  >
-                    Самовывоз
-                  </button>
-                </div>
-                <div className={s.header__inputs}>
-                  <div className={s.header__input}>
-                    <Input placeholder="Адрес доставки" />
-                  </div>
-                  <div className={s.header__input_info}>
-                    <Input placeholder="Дом" />
-                    <Input placeholder="Етаж" />
-                    <Input placeholder="Квартира" />
-                    <Input placeholder="Подьезд" />
-                  </div>
-                  <div className={s.header__input_comm}>
-                    <Textarea
-                      style={{ width: "100%" }}
-                      placeholder="Комментарий"
-                    />
-                  </div>
-                </div>
-                <div
-                  style={{ marginTop: "auto" }}
-                  className={s.header__main_modal_btn}
-                >
-                  <Button
-                    style={{ width: "100%", marginTop: "auto" }}
-                    colorScheme="blue"
-                  >
-                    Button
-                  </Button>
-                </div>
-              </div>
-              <div className={s.header__modal_right}>
-                <img
-                  src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/image-asset.gif"
-                  alt=""
-                />
-              </div>
-            </div>
-          </ModalBody>
-        </ModalContent>
+https://delivery-q991.onrender.com/logout
+
+
+
+
+https://geocode-maps.yandex.ru/1.x/?apikey=54859190-2d05-4882-b44e-
+41513d34bf99&format=json&geocode=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9A%D0%B0%D1%82%D0%B0%D1%80%D1%82%D0%B0%D0%BB,
+%2028,%20%D0%A2%D0%B0%D1%88%D0%BA%D0%B5%D0%BD%D1%82&ll=69.279729,41.311153&spn=10,10

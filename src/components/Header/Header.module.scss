@@ -5,6 +5,17 @@
     align-items: center;
     justify-content: space-between;
   }
+  &__timer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+    button{
+      margin: 0;
+    }
+  }
   &__purp{
     color: #7d5eaa;
   }
@@ -322,4 +333,11 @@
 }
 .text {
   color: red;
+}
+.error__text{
+  display: block;
+  color: red;
+  &.error_message{
+    display: none;
+  }
 }

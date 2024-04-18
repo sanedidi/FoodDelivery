@@ -23,17 +23,8 @@ export const UserInfo = ({ id }) => {
   };
 
   const handleLogout = async () => {
-    try {
-      await axios.post(`https://delivery-q991.onrender.com/logout`,
-    {
-      headers:{
-        Authorization: `Bearer ${localStorage.removeItem('token')}`
-      }
-    });
-      console.log("Успешный выход из аккаунта");
-    } catch (error) {
-      console.error("Ошибка при выходе из аккаунта:", error);
-    }
+    localStorage.removeItem('token')
+    window.location.href='/'
   };
 
   useEffect(() => {
