@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import s from "./Header.module.scss";
 import logo from "../../assets/svg/logo.svg";
-import { Drawer, Input, Textarea } from "@chakra-ui/react";
+import { Drawer, Input, InputLeftAddon, Textarea } from "@chakra-ui/react";
 import LocationIcon from "../../assets/svg/LocationIcon.svg";
 import russian from "../../assets/svg/russian.svg";
 import { SlBasket } from "react-icons/sl";
@@ -585,11 +585,15 @@ export const Header = () => {
                   </Stack>
                   <p>Номер телефона</p>
                   <Stack spacing={4}>
-                    <InputGroup>
+                    <InputGroup
+                      style={{ display: "flex", flexDirection: "row" }}
+                    >
+                      <InputLeftAddon>+998</InputLeftAddon>
                       <Input
-                        type="tel"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
+                        type="tel"
+                        placeholder="phone number"
                       />
                     </InputGroup>
                   </Stack>
