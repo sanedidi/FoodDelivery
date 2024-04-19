@@ -347,7 +347,7 @@ export const Header = () => {
                     <button
                       onClick={() => HandleBtnClick(1)}
                       className={`${s.header__modal_btn} ${
-                        Btn === 1 ? s.active : ""
+                        Btn === 1 ? s.active : ''
                       }`}
                     >
                       Доставка
