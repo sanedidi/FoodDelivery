@@ -4,6 +4,7 @@ import { useFilterProps } from "./useFilterProps";
 import { SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import SwiperMain from "../Swiper/Swiper";
+
 const Filter = () => {
   const { filters, activeIndex, setActiveIndex } = useFilterProps();
 
@@ -20,7 +21,9 @@ const Filter = () => {
               <SwiperSlide
                 onClick={() => handleClick(index)}
                 className={`${s.filter__slider} ${
-                  activeIndex === index ? s.active : ""
+                  (activeIndex === null && index === 0) || activeIndex === index
+                    ? s.active
+                    : ""
                 }`}
                 key={index}
               >
@@ -29,7 +32,9 @@ const Filter = () => {
                     <img src={el.img} alt="" />
                     <p
                       className={`${s.filter__slider_text} ${
-                        activeIndex === index ? s.active : ""
+                        (activeIndex === null && index === 0) || activeIndex === index
+                          ? s.active
+                          : ""
                       }`}
                     >
                       {el.desc}

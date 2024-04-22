@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import request from "./HttpRequest/index";
 const AuthService = {
   login: (data) => request.post("https://delivery-q991.onrender.com/api/v1/auth/login/", data),
-  verifyCode: (data) => request.post('https://delivery-q991.onrender.com/api/v1/auth/verify-code/', data)
+  verifyCode: (data) => request.post('https://delivery-q991.onrender.com/api/v1/auth/verify-code/', data),
 };
 
 

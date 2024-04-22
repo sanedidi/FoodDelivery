@@ -19,15 +19,27 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 20px 0;
+  }
+  &__birth_data{
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+  }
+  &__main_title{
+      font-size: 20px;
+      color: rgba(127, 127, 127, 1);
+      font-weight: 500;
   }
   &__item {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
     h2 {
       font-size: 20px;
+      color: rgba(127, 127, 127, 1);
       font-weight: 500;
     }
     p {
@@ -35,15 +47,37 @@
       font-weight: 500;
     }
   }
+  &__buttons_edit{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: end;
+    .gg{
+      background-color: rgba(126, 95, 165, 1);
+    }
+  }
   &__item2 {
     display: flex;
     justify-content: space-between;
   }
-  &__user_data {
+  &__form_edit{
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 5px;
+    gap: 10px;
+  }
+  &__item_edit{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+  }
+  &__user_data {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    input{
+      width: 100%;
+    }
     p {
       font-size: 18px;
       font-weight: 500;
@@ -61,13 +95,19 @@
     color: #000;
   }
   &__edit {
-    button {
+    width: 100%;
+    
       color: rgba(126, 95, 165, 1);
       font-size: 18px;
       font-weight: 600;
       text-align: left;
-    }
+      width: max-content;
   }
+  &__main_edit{
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+  }
+
   &__logOut {
     font-size: 18px;
     font-weight: 600;
