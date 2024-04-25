@@ -116,7 +116,7 @@ export const Header = () => {
 
   const handleSendCode = async () => {
     try {
-      const response = await login({ email });
+      const response = email.includes("@") ? await login({ email }) : null;
       setShowCodeInput(true);
       setResendDisabled(true);
       setTimeLeft(60);
@@ -533,7 +533,8 @@ export const Header = () => {
                       </InputLeftElement>
 
                       <Input
-                        type="text"
+                        type="number"
+                        maxLength={6}
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
                         className={`${s.input} ${!isCodeValid ? s.error : ""}`}
@@ -590,9 +591,10 @@ export const Header = () => {
                     >
                       <InputLeftAddon>+998</InputLeftAddon>
                       <Input
+                        maxLength={9}
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        type="tel"
+                        type="number"
                         placeholder="phone number"
                       />
                     </InputGroup>
