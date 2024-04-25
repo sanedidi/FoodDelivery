@@ -117,10 +117,10 @@ export const Header = () => {
   const handleSendCode = async () => {
     try {
       const response = email.includes("@") ? await login({ email }) : null;
-      setShowCodeInput(true);
-      setResendDisabled(true);
-      setTimeLeft(60);
-      setShowTimer(true);
+      setShowCodeInput(email.includes("@") ? true : false);
+      setResendDisabled(email.includes("@") ? true : false);
+      setTimeLeft(60);  
+      setShowTimer(email.includes("@") ? true : false);
       setResendButtonText(
         `00:${timeLeft < 10 ? `0${timeLeft}` : timeLeft} сек`
       );
@@ -185,8 +185,8 @@ export const Header = () => {
   const handleEmailButtonClick = async () => {
     try {
       await handleSendCode();
-      setShowEmailInput(false);
-      setShowTimer(true);
+      setShowEmailInput(!email.includes("@") ? true : false);
+      setShowTimer(email.includes("@") ? true : false);
     } catch (error) {
       console.log(error);
     }
