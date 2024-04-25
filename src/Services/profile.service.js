@@ -11,5 +11,5 @@ const ProfService = {
 };
 
 export const useEdit = () => {
-  return useMutation((data) => ProfService.edit(id, data));
+  return useMutation(( id, data) => ProfService.edit(id, data));
 };

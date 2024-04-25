@@ -7,6 +7,8 @@ import 'swiper/css/navigation';
 import { Link } from 'react-router-dom';
 import { useHeroProps } from './useHeroProps';
 import SwiperMain from '../Swiper/Swiper';
+import { Icon } from '@chakra-ui/icons';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 
 export const Hero = () => {
   const { banner } = useHeroProps();
@@ -15,6 +17,7 @@ export const Hero = () => {
     <section className={s.hero}>
       <div className="container">
         <div className={s.hero__wrapper}>
+          <button className={s.hero__btn__left}><Icon as={SlArrowLeft} /></button>
           <SwiperMain preview={1}>
             {banner.map((el) => (
               <SwiperSlide key={el.id}>
@@ -24,6 +27,7 @@ export const Hero = () => {
               </SwiperSlide>
             ))}
           </SwiperMain>
+          <button className={s.hero__btn__right}><Icon as={SlArrowRight} /></button> 
         </div>
       </div>
     </section>

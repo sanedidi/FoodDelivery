@@ -1,6 +1,7 @@
 .hero{
     margin: 20px 0;
     &__wrapper{
+        position: relative;
         img{
             width: 100%;
         }
@@ -8,4 +9,30 @@
   
 }
 
+.hero__btn__left{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px 0px 8px 0px #0000001A;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
 
+.hero__btn__right{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px 0px 8px 0px #0000001A;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    z-index: 2;
+}
